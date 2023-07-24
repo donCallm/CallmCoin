@@ -1213,6 +1213,29 @@ static void SoftForkDescPushBack(const CBlockIndex* blockindex, UniValue& softfo
     softforks.pushKV(DeploymentName(id), rv);
 }
 
+RPCHelpMan getegorpidor()
+{
+    return RPCHelpMan{"getegorpidor",
+        "...\n",
+        {},
+        RPCResult{
+            RPCResult::Type::OBJ, "", "",
+            {
+                {RPCResult::Type::STR, "egorpidor", ""},
+            }},
+        RPCExamples{
+            HelpExampleCli("getegorpidor", "")
+            + HelpExampleRpc("getegorpidor", "")
+        },
+        [&](const RPCHelpMan& self, const JSONRPCRequest& request) -> UniValue
+{
+    UniValue obj(UniValue::VOBJ);
+    obj.pushKV("getegorpidor", NULL);
+    return obj;
+},
+    };
+}
+
 // used by rest.cpp:rest_chaininfo, so cannot be static
 RPCHelpMan getblockchaininfo()
 {
@@ -2722,6 +2745,7 @@ void RegisterBlockchainRPCCommands(CRPCTable& t)
         {"blockchain", &scantxoutset},
         {"blockchain", &scanblocks},
         {"blockchain", &getblockfilter},
+        {"egorpidor", &getegorpidor},
         {"hidden", &invalidateblock},
         {"hidden", &reconsiderblock},
         {"hidden", &waitfornewblock},
